@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ADD_USER, MUTATION_LOGIN } from '../utils/mutations';
+import { ADD_USER } from '../utils/mutations';
 import { useMutation } from "@apollo/client";
 
 export default function LoginForm (props) {

@@ -10,6 +10,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import LoginForm from './components/LoginForm';
+import LoginProvider from './utils/LoginContext';
 import { Outlet } from 'react-router-dom';
 
 // Construct our main GraphQL API endpoint
@@ -38,6 +39,10 @@ const client = new ApolloClient({
 
 function App() {
   const [count, setCount] = useState(0)
+  // get token, if null, empty string will be the token
+  const token = localStorage.getItem('user_token') || '';
+  // want to set the proper state from the beginning if we are initially logged in
+  const loggedIn = token.length > 0;
 
   return (
     <ApolloProvider client={client}>
