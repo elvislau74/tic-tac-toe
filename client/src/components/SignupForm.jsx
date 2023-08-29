@@ -85,6 +85,7 @@ export default function LoginForm (props) {
         <input 
           name="password" 
           type="password"
+          placeholder="password"
           value={formState.password}
           onChange={handleChange}
         />
