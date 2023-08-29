@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { ADD_USER } from '../utils/mutations';
 import { useMutation } from "@apollo/client";
+import Auth from '../utils/auth';
+import { useNavigate } from "react-router-dom";
+import { useLogin } from "../utils/LoginContext";
+import { LOGIN } from "../utils/actions";
 
 export default function LoginForm (props) {
+    const navigate = useNavigate();
     const [formState, setFormState ] = useState({
       username: '',
       email: '',
@@ -19,6 +24,8 @@ export default function LoginForm (props) {
   
     const [signup, { error }] = useMutation(ADD_USER);
   
+    const {state, dispatch} = useLogin();
+
     const handleChange = (event) => {
       event.preventDefault();
   
@@ -44,11 +51,15 @@ export default function LoginForm (props) {
           }
         });
   
-        // console.log(data);
-        // console.log(data?.login.token)
-        // console.log(data?.login.user);
+        const token = data?.addUser.token || '';
+        const user = data?.addUser.user || {};
         setShowSuccess(true);
-        setUserData(data?.addUser.user);
+        setUserData(user);
+
+        Auth.login(token);
+
+        dispatch({type: LOGIN, payload: {user, token}});
+        return navigate('/');
       }catch(err){
         console.error(err);
         setShowError(true);
