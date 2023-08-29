@@ -44,11 +44,11 @@ export default function LoginForm (props) {
           }
         });
   
-        console.log(data);
-        console.log(data?.login.token)
-        console.log(data?.login.user);
+        // console.log(data);
+        // console.log(data?.login.token)
+        // console.log(data?.login.user);
         setShowSuccess(true);
-        setUserData(data?.login.user);
+        setUserData(data?.addUser.user);
       }catch(err){
         console.error(err);
         setShowError(true);
@@ -87,7 +87,7 @@ export default function LoginForm (props) {
         )}
         { showSuccess ? (
           <h4 style={{color: "green"}}>
-            Good Login! Hello, {userData.name}!
+            Welcome back, {userData.username}!
           </h4>
         ) : (
           <></>

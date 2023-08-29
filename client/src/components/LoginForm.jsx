@@ -79,7 +79,7 @@ export default function LoginForm (props) {
         )}
         { showSuccess ? (
           <h4 style={{color: "green"}}>
-            Good Login! Hello, {userData.name}!
+            Good Login! Hello, {userData.username}!
           </h4>
         ) : (
           <></>
