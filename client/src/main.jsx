@@ -9,6 +9,7 @@ import Error from './pages/Error.jsx'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Logout from './pages/Logout.jsx'
+import Game from './pages/Game.jsx'
 
 const router = createBrowserRouter([
   {
@@ -20,10 +21,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
-      // {
-      //   path: '/game',
-      //   element: <Game />
-      // },
+      {
+        path: '/play-game',
+        element: <Game />
+      },
       {
         path: '/logout',
         element: <Logout />

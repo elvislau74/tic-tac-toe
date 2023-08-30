@@ -25,10 +25,10 @@ export default function NavTabs() {
                                 Home
                             </Link>
                             <Link 
-                                to="/play"
-                                className={currentPage === "/play" ? "nav-link active": "nav-link"}
+                                to="/play-game"
+                                className={currentPage === "/play-game" ? "nav-link active": "nav-link"}
                             >
-                                Play
+                                Play Game
                             </Link>
                             {state.loggedIn ? (
                                 <Link 
