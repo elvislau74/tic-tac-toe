@@ -142,8 +142,9 @@ export default function GameBoard (props) {
                 let checkPlayer = condition.every((value) => {
                     return player1Clicked.includes(value);
                 });
+                console.log(checkPlayer);
                 if (checkPlayer) {
-                    setWinner(state?.user.username);
+                    setWinner(state.user.username);
                     setInfoModal({
                         ...infoModal, 
                         open: true, 
@@ -152,7 +153,7 @@ export default function GameBoard (props) {
                     });
                     setWon(true);
                     setDraw(false);
-                    setGameOver(true);
+                    // setGameOver(true);
                 }
             })
         }
