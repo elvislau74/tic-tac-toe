@@ -39,22 +39,12 @@ export default function GameBoard (props) {
 
     const handleClick = async (event, cellIndex) => {
         event.preventDefault();
-        // if (turn !== player) {
-        //     setPlayer(player1)
-        // }
-        // if (turn === player && board[cellIndex] === "") {
-        //     setTurn(player === player1 ? player2 : player1);
-        //     setPlayer1Clicked([...player1Clicked, cellIndex])
-        //     setBoard(
-        //         board.map((val, index) => {
-        //         if (index === cellIndex && val === "") {
-        //             return player;
-        //         }
-        //         return val;
-        //     }));
-        //     setTurnCount(turnCount + 1);
-        // }
-        setPlayer1Clicked([...player1Clicked, cellIndex])
+        if (turn !== player) {
+            setPlayer(player1)
+        }
+        if (turn === player && board[cellIndex] === "") {
+            setTurn(player === player1 ? player2 : player1);
+            setPlayer1Clicked([...player1Clicked, cellIndex])
             setBoard(
                 board.map((val, index) => {
                 if (index === cellIndex && val === "") {
@@ -64,6 +54,18 @@ export default function GameBoard (props) {
             }));
             setTurnCount(turnCount + 1);
             checkWinner();
+        }
+
+        // setPlayer1Clicked([...player1Clicked, cellIndex])
+        //     setBoard(
+        //         board.map((val, index) => {
+        //         if (index === cellIndex && val === "") {
+        //             return player;
+        //         }
+        //         return val;
+        //     }));
+        //     setTurnCount(turnCount + 1);
+        //     checkWinner();
     }
     const computerTurn = () => {
         let randomIndex = Math.floor(Math.random() * 9);

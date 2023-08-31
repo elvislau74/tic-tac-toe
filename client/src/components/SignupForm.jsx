@@ -89,7 +89,7 @@ export default function LoginForm (props) {
           value={formState.password}
           onChange={handleChange}
         />
-        <button type="submit">Login</button>
+        <button type="submit">Signup</button>
         { showError ? (
           <h4 style={{color: "red"}}>
             Error in signup, please try again!

@@ -1,0 +1,5 @@
+.signup-spacing {
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+}

@@ -8,8 +8,20 @@ export default function Home(props) {
     return (
         <>
             <LoginCheck />
-            <h1>Home</h1>
-            <pre>{JSON.stringify(userData, null, 2)}</pre>
+            {state.loggedIn ? (
+            <>
+                <div className="pad">
+                    <h1>Welcome, {userData.username}!</h1>
+                    <p>Click On Play Game to Start Playing!</p>
+                    <pre>{JSON.stringify(userData, null, 2)}</pre>
+                </div>
+            </>
+            ) : (
+                <div className="pad">
+                Welcome! Please login or signup to play some Tic Tac Toe!
+                </div>
+            )}
+            
         </>
     )
 };

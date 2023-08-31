@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import {
   ApolloClient,
@@ -13,6 +11,8 @@ import LoginProvider from './utils/LoginContext';
 import { Outlet } from 'react-router-dom';
 import Auth from './utils/auth';
 import Nav from './components/Nav'
+import TopSection from './components/TopSection';
+import BottomSection from './components/BottomSection';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -48,8 +48,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <LoginProvider token={token} loggedIn = {loggedIn}>
-        <Nav />
-        <Outlet />
+      <Nav />
+      <TopSection />
+      <Outlet/>
+      <BottomSection />
       </LoginProvider>
     </ApolloProvider>
   )

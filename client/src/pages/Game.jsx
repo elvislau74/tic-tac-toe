@@ -1,6 +1,7 @@
 import LoginCheck from '../components/LoginCheck.jsx';
 import { useLogin } from '../utils/LoginContext';
 import GameBoard from '../components/GameBoard.jsx';
+import '../styles/Game.css';
 
 export default function Game(props) {
     const [ state, dispatch ] = useLogin();
@@ -8,6 +9,7 @@ export default function Game(props) {
     return (
         <>
             <LoginCheck />
+            <div className='gamepage-spacing'>
             {state.loggedIn ? (
                 <>
                 <h1>Tic Tac Toe</h1>
@@ -18,6 +20,7 @@ export default function Game(props) {
                     Please login or signup to play the game.
                 </>
             )}
+            </div>
         </>
     )
 }
