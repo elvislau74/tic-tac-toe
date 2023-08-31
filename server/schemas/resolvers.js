@@ -25,6 +25,19 @@ const resolvers = {
           console.log(user);
           return user;
         },
+        games: async (parent, {}, context) => {
+          if(!isLoggedIn(context)){
+            throw new Error("Not logged in");
+          }
+          console.log(context);
+          let games = await GameHistory.find({
+            userThatPlayed: context.user._id
+          }).sort({createTime: 'descending'}).populate('userThatPlayed');
+          // serialize an array to an array of plain objects
+          games = games.map( game => game.toObject() );
+          console.log(JSON.stringify(games, null, 2));
+          return games;
+        }
     },
     Mutation: {
         addUser: async (parent, { username, email, password }) => {
@@ -48,6 +61,23 @@ const resolvers = {
     
           const token = signToken(user);
           return { token, user };
+        },
+        // renamed game input argument to gameInfo
+        addGame: async (parent, {gameData:gameInfo} , context) => {
+          if(!isLoggedIn(context)){
+            throw new Error("Not logged in");
+          }
+
+          let game = await GameHistory.create( {
+            // ... or spread means copy and paste key values pairs to create method
+            ...gameInfo,
+            // added my user id as a new ObjectId
+            userThatPlayed: new Types.ObjectId(context.user._id)
+          });
+          game = game.toObject();
+          console.log(JSON.stringify(game, null, 2));
+
+          return game;
         },
     },
 };

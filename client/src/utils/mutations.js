@@ -24,3 +24,19 @@ export const LOGIN_USER = gql`
         }
     }  
 `;
+export const ADD_GAME = gql`
+    mutation addGame($gameData: GameHistoryInput!) {
+        addGame(gameData: $gameData) {
+            _id
+            cellsFilled
+            createTime
+            draw
+            userThatPlayed {
+                _id
+                email
+                username
+            }
+            win
+        }
+    }
+`;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { LOGIN_USER } from '../utils/mutations';
+import { ADD_GAME } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import { useLogin } from '../utils/LoginContext';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,6 @@ import '../styles/Game.css'
 import InfoModal from './InfoModal.jsx';
 
 export default function GameBoard (props) {
-    const gameField = document.getElementsByClassName("game-row");
     const [ board, setBoard ] = useState(["", "", "", "", "", "", "", "", ""]);
 
     const player1 = 'X';
@@ -37,7 +36,8 @@ export default function GameBoard (props) {
     const [seed, setSeed] = useState(1);
     // const [ winnerMessage, setWinnerMessage ] = useState("");
     const [ gameOver, setGameOver ] = useState(false);
-    const [ draw, setDraw ] = useState(false);
+    const [won, setWon] = useState(false);
+    const [draw, setDraw] = useState(false);
     const [ gameHistory, setGameHistory ] = useState([]);
 
     const closeModal = (event) => {
@@ -48,7 +48,19 @@ export default function GameBoard (props) {
     }
     
 
-    const [ login, { error }] = useMutation(LOGIN_USER);
+    const [ addGame, { error: errorAddingGame }] = useMutation(ADD_GAME, {
+        update(cache, { data: { addGame } }) {
+            try {
+                const { games } = cache.readQuery({ query: ADD_GAME });
+                cache.writeQuery({
+                    query: ADD_GAME,
+                    data: { games: [addGame, ...games] }
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    });
 
     const [ state, dispatch ] = useLogin();
 
@@ -83,6 +95,22 @@ export default function GameBoard (props) {
             console.log(player1Clicked)
             setTurnCount(turnCount + 1);
             checkWinner();
+
+            // try {
+            //     const { data } = await addGame({
+            //         variables: {
+            //             game: {
+            //                 cellsFilled: board,
+            //                 win: won,
+            //                 draw: draw
+            //             }
+            //         }
+            //     });
+                
+            // } catch (error) {
+            //     console.log(error);
+            //     console.log(errorAddingGame);
+            // }
     }
     const computerTurn = () => {
         let randomIndex = Math.floor(Math.random() * 9);
@@ -122,6 +150,8 @@ export default function GameBoard (props) {
                         heading: "Victory!", 
                         message: `${winner}, you win!`
                     });
+                    setWon(true);
+                    setDraw(false);
                     setGameOver(true);
                 }
             })
@@ -143,6 +173,8 @@ export default function GameBoard (props) {
                         message: `Computer Wins.`
                     });
                     setGameOver(true);
+                    setWon(false);
+                    setDraw(false);
                 }
             })
         }
@@ -157,6 +189,8 @@ export default function GameBoard (props) {
                 heading: "Draw!", 
                 message: `It's a draw.`
             });
+            setWon(false);
+            setDraw(true);
             setGameOver(true);
         }
     }

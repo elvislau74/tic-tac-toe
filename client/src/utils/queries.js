@@ -8,4 +8,20 @@ export const QUERY_ME = gql`
         username
         }
     }
-`;
+`
+export const QUERY_GAMES = gql`
+    query games {
+        games {
+        _id
+        cellsFilled
+        createTime
+        draw
+        userThatPlayed {
+            _id
+            email
+            username
+        }
+        win
+        }
+    }
+  `;
