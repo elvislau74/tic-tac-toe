@@ -38,12 +38,20 @@ export default function NavTabs() {
                                     Logout
                                 </Link>
                             ) : (
+                                <>
                                 <Link 
                                     to="/login"
                                     className={currentPage === "/login" ? "nav-link active": "nav-link"}
                                 >
-                                    Login/Signup
+                                    Login
                                 </Link>
+                                <Link 
+                                    to="/signup"
+                                    className={currentPage === "/signup" ? "nav-link active": "nav-link"}
+                                >
+                                    Signup
+                                </Link>
+                                </>
                             )}
                         </Nav>
                     </Navbar.Collapse>

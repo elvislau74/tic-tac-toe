@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from "./actions";
+import { LOGIN, LOGOUT, SIGNUP } from "./actions";
 
 export const reducer = (state, {type, payload}) => {
   switch(type){
@@ -12,6 +12,13 @@ export const reducer = (state, {type, payload}) => {
         };
       }
       return state;
+    case SIGNUP: 
+        return {
+          ...state,
+          loggedIn: true,
+          user: {...payload.user},
+          token: payload.token
+        };
     case LOGOUT: 
       return {
         ...state,

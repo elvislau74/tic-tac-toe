@@ -1,6 +1,5 @@
 import { useLogin } from "../utils/LoginContext"
 import LoginCheck from "../components/LoginCheck"
-import Nav from "../components/Nav"
 
 export default function Home(props) {
     const [ state, dispatch ] = useLogin();
@@ -9,7 +8,6 @@ export default function Home(props) {
     return (
         <>
             <LoginCheck />
-            <Nav />
             <h1>Home</h1>
             <pre>{JSON.stringify(userData, null, 2)}</pre>
         </>

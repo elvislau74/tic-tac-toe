@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import Auth from '../utils/auth';
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../utils/LoginContext";
-import { LOGIN } from "../utils/actions";
+import { SIGNUP } from "../utils/actions";
 
 export default function LoginForm (props) {
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function LoginForm (props) {
   
     const [signup, { error }] = useMutation(ADD_USER);
   
-    const {state, dispatch} = useLogin();
+    const [state, dispatch] = useLogin();
 
     const handleChange = (event) => {
       event.preventDefault();
@@ -58,7 +58,7 @@ export default function LoginForm (props) {
 
         Auth.login(token);
 
-        dispatch({type: LOGIN, payload: {user, token}});
+        dispatch({type: SIGNUP, payload: {user, token}});
         return navigate('/');
       }catch(err){
         console.error(err);
@@ -99,7 +99,7 @@ export default function LoginForm (props) {
         )}
         { showSuccess ? (
           <h4 style={{color: "green"}}>
-            Welcome back, {userData.username}!
+            Welcome, {userData.username}!
           </h4>
         ) : (
           <></>
