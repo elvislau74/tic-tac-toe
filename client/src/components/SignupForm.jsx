@@ -22,7 +22,9 @@ export default function LoginForm (props) {
       email: ''
     });
   
-    const [signup, { error }] = useMutation(ADD_USER);
+    const [signup, { error }] = useMutation(ADD_USER, {
+      fetchPolicy: 'no-cache'
+    });
   
     const [state, dispatch] = useLogin();
 

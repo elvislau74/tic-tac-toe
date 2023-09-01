@@ -21,7 +21,9 @@ export default function LoginForm (props) {
       email: ''
     });
   
-    const [login, { error }] = useMutation(LOGIN_USER);
+    const [login, { error }] = useMutation(LOGIN_USER, {
+      fetchPolicy: 'no-cache'
+    });
 
     const [state, dispatch] = useLogin();
   

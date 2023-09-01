@@ -7,7 +7,9 @@ import Auth from "../utils/auth";
 
 export default function LoginCheck(props) {
     const [state, dispatch] = useLogin();
-    const { loading, data: loginData } = useQuery(QUERY_ME);
+    const { loading, data: loginData } = useQuery(QUERY_ME, {
+        fetchPolicy: "no-cache"
+    });
 
     const token = state.token.length > 0 ? state.token : (Auth.getToken() || '');
 

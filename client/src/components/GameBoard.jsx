@@ -28,6 +28,7 @@ export default function GameBoard (props) {
     const [ player1Clicked, setPlayer1Clicked ] = useState([]);
     const [ player2Clicked, setPlayer2Clicked ] = useState([]);
     const [ winner, setWinner ] = useState("");
+    // const winner = "";
     const [ infoModal, setInfoModal ] = useState({
         open: false,
         heading: "",
@@ -69,22 +70,9 @@ export default function GameBoard (props) {
         // if (turn !== player) {
         //     setPlayer(player1)
         // }
-        // if (turn === player && board[cellIndex] === "") {
-        //     setTurn(player === player1 ? player2 : player1);
-        //     setPlayer1Clicked([...player1Clicked, cellIndex])
-        //     setBoard(
-        //         board.map((val, index) => {
-        //         if (index === cellIndex && val === "") {
-        //             return player;
-        //         }
-        //         return val;
-        //     }));
-        //     console.log(player1Clicked)
-        //     setTurnCount(turnCount + 1);
-        //     checkWinner();
-        // }
-
-        setPlayer1Clicked([...player1Clicked, cellIndex])
+        if (turn === player && board[cellIndex] === "") {
+            setTurn(player === player1 ? player2 : player1);
+            checkWinner([...player1Clicked, cellIndex]);
             setBoard(
                 board.map((val, index) => {
                 if (index === cellIndex && val === "") {
@@ -92,9 +80,19 @@ export default function GameBoard (props) {
                 }
                 return val;
             }));
-            console.log(player1Clicked)
             setTurnCount(turnCount + 1);
-            checkWinner();
+        }
+
+            // checkWinner([...player1Clicked, cellIndex]);
+            // setBoard(
+            //     board.map((val, index) => {
+            //     if (index === cellIndex && val === "") {
+            //         return player;
+            //     }
+            //     return val;
+            // }));
+            // console.log(player1Clicked)
+            // setTurnCount(turnCount + 1);
 
             // try {
             //     const { data } = await addGame({
@@ -136,11 +134,11 @@ export default function GameBoard (props) {
         // setPlayer(turn);
     }
 
-    const checkWinner = () => {
+    const checkWinner = (player1ClickedValues) => {
         if (turnCount < 9) {
             winConditions.forEach((condition) => {
                 let checkPlayer = condition.every((value) => {
-                    return player1Clicked.includes(value);
+                    return player1ClickedValues.includes(value);
                 });
                 console.log(checkPlayer);
                 if (checkPlayer) {
@@ -149,36 +147,39 @@ export default function GameBoard (props) {
                         ...infoModal, 
                         open: true, 
                         heading: "Victory!", 
-                        message: `${winner}, you win!`
+                        message: `${state.user.username}, you win!`
                     });
                     setWon(true);
                     setDraw(false);
-                    // setGameOver(true);
+                    setGameOver(true);
                 }
             })
         }
+        setPlayer1Clicked(player1ClickedValues);
     }
 
-    const checkComputerWin = () => {
+    const checkComputerWin = (player2ClickedValues) => {
         if (turnCount < 9) {
             winConditions.forEach((condition) => {
                 let checkPlayer = condition.every((value) => {
-                    return player2Clicked.includes(value);
+                    return player2ClickedValues.includes(value);
                 });
+                console.log(checkPlayer);
                 if (checkPlayer) {
-                    setWinner("Computer");
+                    setWinner(state.user.username);
                     setInfoModal({
                         ...infoModal, 
                         open: true, 
-                        heading: "Crushing Defeat!", 
-                        message: `Computer Wins.`
+                        heading: "Utter Defeat!", 
+                        message: `The computer wins!`
                     });
-                    setGameOver(true);
-                    setWon(false);
+                    setWon(true);
                     setDraw(false);
+                    setGameOver(true);
                 }
             })
         }
+        setPlayer1Clicked(player2ClickedValues);
     }
 
     const checkDraw = () => {
