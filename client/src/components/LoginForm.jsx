@@ -5,6 +5,7 @@ import Auth from '../utils/auth';
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../utils/LoginContext";
 import { LOGIN } from "../utils/actions";
+import '../styles/Login.css'
 
 export default function LoginForm (props) {
     const navigate = useNavigate();
@@ -70,6 +71,7 @@ export default function LoginForm (props) {
   
     return (
       <form onSubmit={handleSubmit}>
+        <h3 className="labels">Email:</h3>
         <input 
           name="email" 
           type="email" 
@@ -77,6 +79,7 @@ export default function LoginForm (props) {
           value={formState.email}
           onChange={handleChange}
         />
+        <h3 className="labels">Password:</h3>
         <input 
           name="password" 
           type="password"

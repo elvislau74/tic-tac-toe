@@ -70,6 +70,7 @@ export default function LoginForm (props) {
   
     return (
       <form onSubmit={handleSubmit}>
+        <h3 className="labels">Username:</h3>
         <input 
           name="username" 
           type="text" 
@@ -77,6 +78,7 @@ export default function LoginForm (props) {
           value={formState.username}
           onChange={handleChange}
         />
+        <h3 className="labels">Email:</h3>
         <input 
           name="email" 
           type="email" 
@@ -84,6 +86,7 @@ export default function LoginForm (props) {
           value={formState.email}
           onChange={handleChange}
         />
+        <h3 className="labels">Password:</h3>
         <input 
           name="password" 
           type="password"

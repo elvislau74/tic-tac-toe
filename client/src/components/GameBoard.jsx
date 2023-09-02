@@ -46,7 +46,23 @@ export default function GameBoard (props) {
     const [draw, setDraw] = useState(false);
     const [ gameHistory, setGameHistory ] = useState([]);
 
-    const closeModal = (event) => {
+    const closeModal = async (event) => {
+        try {
+            const { data } = await addGame({
+                variables: {
+                    gameData: {
+                        cellsFilled: board,
+                        win: won,
+                        draw: draw
+                    }
+                }
+            });
+            console.log(data);
+            
+        } catch (error) {
+            console.log(error);
+            console.log(errorAddingGame);
+        }
         setInfoModal({...infoModal, open: false});
 
         // refresh the component by selecting new numbers in useEffect
@@ -102,26 +118,26 @@ export default function GameBoard (props) {
             setNextPlayer(false);
         }
     }
-    const checkGameEnd = async() => {
-        if (gameOver) {
-            try {
-                const { data } = await addGame({
-                    variables: {
-                        gameData: {
-                            cellsFilled: board,
-                            win: won,
-                            draw: draw
-                        }
-                    }
-                });
-                console.log(data);
+    // const checkGameEnd = async() => {
+    //     if (gameOver) {
+    //         try {
+    //             const { data } = await addGame({
+    //                 variables: {
+    //                     gameData: {
+    //                         cellsFilled: board,
+    //                         win: won,
+    //                         draw: draw
+    //                     }
+    //                 }
+    //             });
+    //             console.log(data);
                 
-            } catch (error) {
-                console.log(error);
-                console.log(errorAddingGame);
-            }
-        }
-    }
+    //         } catch (error) {
+    //             console.log(error);
+    //             console.log(errorAddingGame);
+    //         }
+    //     }
+    // }
     // checkGameEnd();
 
     const computerTurn = () => {
@@ -151,6 +167,7 @@ export default function GameBoard (props) {
 
     const checkWinner = (player1ClickedValues) => {
         if (turnCount < 9) {
+            setTurnCount(turnCount + 1);
             winConditions.forEach((condition) => {
                 let checkPlayer = condition.every((value) => {
                     return player1ClickedValues.includes(value);
@@ -183,12 +200,12 @@ export default function GameBoard (props) {
             setGameOver(true);
         }
         setPlayer1Clicked(player1ClickedValues);
-        setTurnCount(turnCount + 1);
-        checkGameEnd();
+        // checkGameEnd();
     }
 
     const checkWinner2 = (player2ClickedValues) => {
         if (turnCount < 9) {
+            setTurnCount(turnCount + 1);
             winConditions.forEach((condition) => {
                 let checkPlayer = condition.every((value) => {
                     return player2ClickedValues.includes(value);
@@ -221,8 +238,7 @@ export default function GameBoard (props) {
             setGameOver(true);
         }
         setPlayer2Clicked(player2ClickedValues);
-        setTurnCount(turnCount + 1);
-        checkGameEnd();
+        // checkGameEnd();
     }
 
     const checkComputerWin = (player2ClickedValues) => {
