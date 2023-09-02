@@ -11,6 +11,7 @@ import Login from './pages/Login.jsx'
 import Logout from './pages/Logout.jsx'
 import Game from './pages/Game.jsx'
 import Signup from './pages/Signup.jsx'
+import GameHistory from './pages/GameHistory.jsx';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/play-game',
         element: <Game />
+      },
+      {
+        path: '/game-history',
+        element: <GameHistory />
       },
       {
         path: '/logout',

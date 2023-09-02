@@ -31,12 +31,20 @@ export default function NavTabs() {
                                 Play Game
                             </Link>
                             {state.loggedIn ? (
+                                <>
+                                <Link 
+                                    to="/game-history"
+                                    className={currentPage === "/game-history" ? "nav-link active": "nav-link"}
+                                >
+                                    Game History
+                                </Link>
                                 <Link 
                                     to="/logout"
                                     className={currentPage === "/logout" ? "nav-link active": "nav-link"}
                                 >
                                     Logout
                                 </Link>
+                                </>
                             ) : (
                                 <>
                                 <Link 

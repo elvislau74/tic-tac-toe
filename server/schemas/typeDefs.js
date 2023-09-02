@@ -31,7 +31,7 @@ type Query {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addGame(gameData: GameHistoryInput!): GameHistory
+    addGame(gameData: GameHistoryInput): GameHistory
 }
 `;
 
