@@ -24,7 +24,36 @@
 .gamepage-spacing {
     padding: 100px;
 }
-
+.info-modal{
+    background: white;
+    color: black;
+    min-width: 200px;
+    max-width: 90vw;
+    min-height: 100px;
+    max-height: 90vh;
+    padding: 30px;
+    border-radius: 20px;
+  }
+.info-modal a {
+    text-decoration: none;
+}
+.info-modal a:hover {
+    color:gray;
+    text-decoration: underline;
+}
+  
+.info-modal-overlay{
+position: fixed;
+top: 0;
+left: 0;
+background: rgba(0,0,0,0.5);
+width: 100vw;
+height: 100vh;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+}
 @media screen and (max-width:767px){
     
 }
