@@ -70,6 +70,11 @@ export default function GameBoard (props) {
     }
     
 
+    useEffect(() => {
+        checkDraw();
+        checkGameEnd();
+    }, [board]);
+
     const [ addGame, { error: errorAddingGame }] = useMutation(ADD_GAME, {
         update(cache, { data: { addGame } }) {
             try {
@@ -88,7 +93,7 @@ export default function GameBoard (props) {
 
     const handleClick = async (event, cellIndex) => {
         event.preventDefault();
-        checkDraw();
+        // checkDraw();
         // setTurnCount(turnCount + 1);
         if (!nextPlayer && board[cellIndex] === "") {
             // setTurnCount(turnCount + 1);
@@ -292,7 +297,7 @@ export default function GameBoard (props) {
 
     useEffect(() => {
         // nextPlayer = false;
-        checkGameEnd();
+        // checkGameEnd();
         setTurnCount(0);
         setNextPlayer(false);
         setPlayer1Clicked([]);
