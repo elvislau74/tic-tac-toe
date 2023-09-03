@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useLocation } from 'react-router-dom';
 import { useLogin } from '../utils/LoginContext';
-// import '../styles/Nav.css';
+import '../styles/Nav.css';
 
 // Creates a nav bar with routing to other pages
 export default function NavTabs() {
