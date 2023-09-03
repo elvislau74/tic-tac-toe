@@ -13,6 +13,7 @@ export default function Game(props) {
             {state.loggedIn ? (
                 <>
                 <h1>Tic Tac Toe</h1>
+                <p>Click any square to start</p>
                 <GameBoard />
                 </>
             ) : (    

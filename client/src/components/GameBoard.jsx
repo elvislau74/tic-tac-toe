@@ -88,6 +88,7 @@ export default function GameBoard (props) {
 
     const handleClick = async (event, cellIndex) => {
         event.preventDefault();
+        checkDraw();
         // setTurnCount(turnCount + 1);
         if (!nextPlayer && board[cellIndex] === "") {
             // setTurnCount(turnCount + 1);
@@ -118,52 +119,51 @@ export default function GameBoard (props) {
             setNextPlayer(false);
         }
     }
-    // const checkGameEnd = async() => {
-    //     if (gameOver) {
-    //         try {
-    //             const { data } = await addGame({
-    //                 variables: {
-    //                     gameData: {
-    //                         cellsFilled: board,
-    //                         win: won,
-    //                         draw: draw
-    //                     }
-    //                 }
-    //             });
-    //             console.log(data);
+    const checkGameEnd = async() => {
+        if (gameOver) {
+            try {
+                const { data } = await addGame({
+                    variables: {
+                        gameData: {
+                            cellsFilled: board,
+                            win: won,
+                            draw: draw
+                        }
+                    }
+                });
+                console.log(data);
                 
-    //         } catch (error) {
-    //             console.log(error);
-    //             console.log(errorAddingGame);
-    //         }
-    //     }
-    // }
+            } catch (error) {
+                console.log(error);
+                console.log(errorAddingGame);
+            }
+        }
+    }
     // checkGameEnd();
 
-    const computerTurn = () => {
-        let randomIndex = Math.floor(Math.random() * 9);
-        const alreadyChosen = player1Clicked.includes(randomIndex);
-        if (alreadyChosen) {
-            randomIndex = Math.floor(Math.random() * 9);
-        }
-        console.log(turn)
-        if (nextPlayer && board[randomIndex] === "") {
-            setTurnCount(turnCount + 1);
-            setTurn(turn === player2 ? player1 : player2);
-            // turn === player1;
-            console.log(turn)
-            checkComputerWin(...player2Clicked, randomIndex)
-            setBoard(
-                board.map((val, index) => {
-                if (index === randomIndex && val === "") {
-                    return turn;
-                }
-                return val;
-            }));
-            setNextPlayer(false);
-        } 
-        // setPlayer(turn);
-    }
+    // const computerTurn = () => {
+    //     let randomIndex = Math.floor(Math.random() * 9);
+    //     const alreadyChosen = player1Clicked.includes(randomIndex);
+    //     if (alreadyChosen) {
+    //         randomIndex = Math.floor(Math.random() * 9);
+    //     }
+    //     console.log(turn)
+    //     if (nextPlayer && board[randomIndex] === "") {
+    //         setTurnCount(turnCount + 1);
+    //         setTurn(turn === player2 ? player1 : player2);
+    //         // turn === player1;
+    //         console.log(turn)
+    //         checkComputerWin(...player2Clicked, randomIndex)
+    //         setBoard(
+    //             board.map((val, index) => {
+    //             if (index === randomIndex && val === "") {
+    //                 return turn;
+    //             }
+    //             return val;
+    //         }));
+    //         setNextPlayer(false);
+    //     } 
+    // }
 
     const checkWinner = (player1ClickedValues) => {
         if (turnCount < 9) {
@@ -186,19 +186,20 @@ export default function GameBoard (props) {
                     setGameOver(true);
                 }
             })
-        } else {
-            setDraw(true);
-            console.log(turnCount)
-            setInfoModal({
-                ...infoModal, 
-                open: true, 
-                heading: "Draw!", 
-                message: `It's a draw.`
-            });
-            setWon(false);
-            setDraw(true);
-            setGameOver(true);
-        }
+        } 
+        // else {
+        //     setDraw(true);
+        //     console.log(turnCount)
+        //     setInfoModal({
+        //         ...infoModal, 
+        //         open: true, 
+        //         heading: "Draw!", 
+        //         message: `It's a draw.`
+        //     });
+        //     setWon(false);
+        //     setDraw(true);
+        //     setGameOver(true);
+        // }
         setPlayer1Clicked(player1ClickedValues);
         // checkGameEnd();
     }
@@ -224,52 +225,59 @@ export default function GameBoard (props) {
                     setGameOver(true);
                 }
             })
-        } else {
-            setDraw(true);
-            console.log(turnCount)
-            setInfoModal({
-                ...infoModal, 
-                open: true, 
-                heading: "Draw!", 
-                message: `It's a draw.`
-            });
-            setWon(false);
-            setDraw(true);
-            setGameOver(true);
-        }
+        } 
+        // else {
+        //     setDraw(true);
+        //     console.log(turnCount)
+        //     setInfoModal({
+        //         ...infoModal, 
+        //         open: true, 
+        //         heading: "Draw!", 
+        //         message: `It's a draw.`
+        //     });
+        //     setWon(false);
+        //     setDraw(true);
+        //     setGameOver(true);
+        // }
         setPlayer2Clicked(player2ClickedValues);
         // checkGameEnd();
     }
 
-    const checkComputerWin = (player2ClickedValues) => {
-        console.log(player2ClickedValues)
-        if (turnCount < 9) {
-            winConditions.forEach((condition) => {
-                let checkPlayer = condition.every((value) => {
-                    return player2ClickedValues.includes(value);
-                });
-                console.log(checkPlayer);
-                if (checkPlayer) {
-                    setWinner(state.user.username);
-                    setInfoModal({
-                        ...infoModal, 
-                        open: true, 
-                        heading: "Utter Defeat!", 
-                        message: `The computer wins!`
-                    });
-                    setWon(true);
-                    setDraw(false);
-                    setGameOver(true);
-                }
-            })
-        }
-        setPlayer2Clicked(player2ClickedValues);
-    }
+    // const checkComputerWin = (player2ClickedValues) => {
+    //     console.log(player2ClickedValues)
+    //     if (turnCount < 9) {
+    //         winConditions.forEach((condition) => {
+    //             let checkPlayer = condition.every((value) => {
+    //                 return player2ClickedValues.includes(value);
+    //             });
+    //             console.log(checkPlayer);
+    //             if (checkPlayer) {
+    //                 setWinner(state.user.username);
+    //                 setInfoModal({
+    //                     ...infoModal, 
+    //                     open: true, 
+    //                     heading: "Utter Defeat!", 
+    //                     message: `The computer wins!`
+    //                 });
+    //                 setWon(true);
+    //                 setDraw(false);
+    //                 setGameOver(true);
+    //             }
+    //         })
+    //     }
+    //     setPlayer2Clicked(player2ClickedValues);
+    // }
 
     const checkDraw = () => {
-        if (turnCount == 9 && winner === "") {
+        let filled = true;
+        board.forEach((cell) => {
+            if (cell === "") {
+                filled = false;
+                console.log("filled", filled);
+            }
+        });
+        if (filled) {
             setDraw(true);
-            console.log(turnCount)
             setInfoModal({
                 ...infoModal, 
                 open: true, 
@@ -279,12 +287,12 @@ export default function GameBoard (props) {
             setWon(false);
             setDraw(true);
             setGameOver(true);
-            return;
         }
     }
 
     useEffect(() => {
         // nextPlayer = false;
+        checkGameEnd();
         setTurnCount(0);
         setNextPlayer(false);
         setPlayer1Clicked([]);
