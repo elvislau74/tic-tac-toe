@@ -28,8 +28,8 @@
   This application requires the user to have Node.js downloaded onto their system. It is recommended that the user downloads v16 up to v18 for this application to run properly. You can download it from [here](https://nodejs.org/en/blog/release/v16.16.0).
 
   After opening up this app, make sure to type these into the integrated terminal to install the required npm packages/dependencies and start the server application on your local device: 
-  - `npm install` is required to build the server.
-  - `npm run develop` connects users to MongoDB through Node.
+  - `npm install` to download the dependencies.
+  - `npm run develop` to start the server application.
 
   ## Usage
 
