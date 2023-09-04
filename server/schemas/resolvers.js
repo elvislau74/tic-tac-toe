@@ -1,5 +1,6 @@
 
-const { User } = require('../models');
+const { User, GameHistory } = require('../models');
+const { Types } = require('mongoose');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const isLoggedIn = (context) => {
