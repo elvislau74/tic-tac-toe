@@ -13,6 +13,7 @@ import Auth from './utils/auth';
 import Nav from './components/Nav'
 import TopSection from './components/TopSection';
 import BottomSection from './components/BottomSection';
+import Footer from './components/Footer';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -52,6 +53,7 @@ function App() {
       <TopSection />
       <Outlet/>
       <BottomSection />
+      <Footer />
       </LoginProvider>
     </ApolloProvider>
   )

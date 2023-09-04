@@ -35,3 +35,10 @@
 .pad {
   padding: 100px;
 }
+.footer {
+  background-color: #1e1b4b;
+  height: 5vh;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
