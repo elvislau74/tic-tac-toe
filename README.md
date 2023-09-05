@@ -35,7 +35,7 @@
 
   Signup for a new account and enjoy playing tic tac toe with your friends while being able to look back on your game history. 
   
-![tic-tac-toe-site](https://github.com/elvislau74/tic-tac-toe/assets/126195092/4b70a442-14a6-4172-9d64-527a3887407c)
+![tic-tac-toe-site](https://github.com/elvislau74/tic-tac-toe/assets/126195092/6ca060cc-6766-4411-8e54-9dd972825a6d)
 
   [Click here for the Live Site](https://tic-tac-toe45-a42400054b7f.herokuapp.com/)
 
