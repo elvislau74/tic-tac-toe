@@ -18,7 +18,8 @@ export default function Home(props) {
             </>
             ) : (
                 <div className="pad">
-                Welcome! Please login or signup to play some Tic Tac Toe!
+                <h1>Welcome!</h1> 
+                Please login or signup to play some Tic Tac Toe!
                 </div>
             )}
             
