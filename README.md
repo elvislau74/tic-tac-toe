@@ -52,7 +52,7 @@
 
   ## Credits
 
-  N/A
+  I would like to thank my instructor and TAs for providing their assistance in debugging.
 
 
   ## License
