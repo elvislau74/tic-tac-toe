@@ -70,9 +70,9 @@ export default function GameHistory(props) {
                     )}
                 </>
             ):(
-                <>
+                <div className="gh-spacing">
                 Please log in to view your game history.
-                </>
+                </div>
                 )}
         </>
     )
