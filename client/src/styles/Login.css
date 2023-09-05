@@ -1,5 +1,6 @@
+/* Style and spacing for my Login page */
 .login-spacing {
-    padding: 100px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;

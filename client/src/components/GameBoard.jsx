@@ -8,17 +8,20 @@ import '../styles/Game.css'
 import InfoModal from './InfoModal.jsx';
 
 export default function GameBoard (props) {
+    // state variables for game board
     const [ board, setBoard ] = useState(["", "", "", "", "", "", "", "", ""]);
 
     const player1 = 'X';
     const player2 = 'O';
 
+    // Win conditions for the game
     const winConditions = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
         [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
         [0, 4, 8], [2, 4, 6] // diagonals
     ]
 
+    // state variables for game logic
     const [ turnCount, setTurnCount ] = useState(0);
     const [ player, setPlayer ] = useState(player1);
     const [ nextPlayer, setNextPlayer ] = useState(false);
@@ -36,6 +39,7 @@ export default function GameBoard (props) {
     const [won, setWon] = useState(false);
     const [draw, setDraw] = useState(false);
 
+    // function to close modal
     const closeModal = async (event) => {
         setInfoModal({...infoModal, open: false});
 
@@ -43,6 +47,7 @@ export default function GameBoard (props) {
         setSeed(seed + 1);
     }
 
+    // mutation to add game to database
     const [ addGame, { error: errorAddingGame }] = useMutation(ADD_GAME, {
         update(cache, { data: { addGame } }) {
             try {
@@ -50,7 +55,6 @@ export default function GameBoard (props) {
                 
                 if (destructQuery && destructQuery.hasOwnProperty("games")) {
                     const { games } = destructQuery;
-                    console.log("Games", games);
                     cache.writeQuery({
                         query: QUERY_GAMES,
                         data: { games: [addGame, ...games] }
@@ -68,6 +72,7 @@ export default function GameBoard (props) {
 
     const [ state, dispatch ] = useLogin();
 
+    // Checks win conditions on each click and updates the board and state accordingly
     const handleClick = async (event, cellIndex) => {
         event.preventDefault();
 
@@ -197,6 +202,7 @@ export default function GameBoard (props) {
         checkWinConditions();
     }
 
+    // Check when gameOver state is true and add game to database
     const checkGameEnd = async() => {
         if (gameOver) {
             try {
@@ -209,7 +215,6 @@ export default function GameBoard (props) {
                         }
                     }
                 });
-                console.log(data);
                 
             } catch (error) {
                 console.log(error);
@@ -218,6 +223,7 @@ export default function GameBoard (props) {
         }
     }
     
+    // Resets the board and state after each game and the modal is closed
     useEffect(() => {
         setTurnCount(0);
         setNextPlayer(false);
@@ -227,11 +233,11 @@ export default function GameBoard (props) {
             board.map((val) => {
             return val = "";
         }));
-        console.log(player1Clicked)
         setWinner("");
         setGameOver(false);
     }, [seed])
 
+    // returns game board from game cells component
     return (
         <>
             <div className="game-board">

@@ -1,6 +1,7 @@
 // const gql = require('@apollo/client');
 // const gql = require('graphql-tag');
 
+// defines the type of data that can be fetched from GraphQL
 const typeDefs = `
 type User {
     _id: ID

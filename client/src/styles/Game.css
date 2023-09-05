@@ -1,3 +1,4 @@
+/* Style and spacing for my Game page */
 .game-row{
     display: flex;
     flex-direction: row;
@@ -22,6 +23,9 @@
     width: 100px;
 }
 .gamepage-spacing {
+    padding: 50px;
+}
+.gamepage-spacing-2 {
     padding: 100px;
 }
 .info-modal{

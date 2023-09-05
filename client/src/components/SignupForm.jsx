@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useLogin } from "../utils/LoginContext";
 import { SIGNUP } from "../utils/actions";
 
-export default function LoginForm (props) {
+// Signup form
+export default function SignupForm (props) {
     const navigate = useNavigate();
     const [formState, setFormState ] = useState({
       username: '',

@@ -1,5 +1,6 @@
 import { LOGIN, LOGOUT, SIGNUP } from "./actions";
 
+// reducer function
 export const reducer = (state, {type, payload}) => {
   switch(type){
     case LOGIN: 

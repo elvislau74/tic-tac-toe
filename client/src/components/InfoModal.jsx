@@ -1,3 +1,4 @@
+// modal that pops up when the game is over
 export default function InfoModal ({heading, message, closeFunction}) {
   const handleClose = (event) => {
     event.preventDefault();

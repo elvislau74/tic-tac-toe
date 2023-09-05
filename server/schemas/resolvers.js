@@ -3,6 +3,7 @@ const { User, GameHistory } = require('../models');
 const { Types } = require('mongoose');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
+// checks context of user that is logged in
 const isLoggedIn = (context) => {
   if(context && context.hasOwnProperty('user') && context.user.hasOwnProperty('_id')){
     return true;
@@ -10,6 +11,7 @@ const isLoggedIn = (context) => {
   return false;
 }
 
+// allows us to view and add to our database
 const resolvers = {
     Query: {
         // By adding context to our query, we can retrieve the logged in user without specifically searching for them

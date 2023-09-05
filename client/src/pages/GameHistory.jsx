@@ -15,6 +15,7 @@ export default function GameHistory(props) {
 
     const handleClick = () => {};
 
+    // renders game history for logged in user
     return (
         <>
             <LoginCheck />

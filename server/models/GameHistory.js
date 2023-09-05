@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// create our gameHistory schema
 const gameHistorySchema = new Schema({
   createTime: {
     type: Schema.Types.Date,
@@ -27,6 +28,7 @@ const gameHistorySchema = new Schema({
   }
 });
 
+// initialize the GameHistory model with the gameHistorySchema
 const GameHistory = model('GameHistory', gameHistorySchema);
 
 module.exports = GameHistory;

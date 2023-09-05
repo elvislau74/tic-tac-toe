@@ -13,6 +13,7 @@ import Game from './pages/Game.jsx'
 import Signup from './pages/Signup.jsx'
 import GameHistory from './pages/GameHistory.jsx';
 
+// creates routes for each page and component
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
   }
 ]);
 
+// renders our components and app to the page
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
 )

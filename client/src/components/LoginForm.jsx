@@ -7,6 +7,7 @@ import { useLogin } from "../utils/LoginContext";
 import { LOGIN } from "../utils/actions";
 import '../styles/Login.css'
 
+// Login form
 export default function LoginForm (props) {
     const navigate = useNavigate();
     const [formState, setFormState ] = useState({

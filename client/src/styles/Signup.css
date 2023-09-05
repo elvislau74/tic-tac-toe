@@ -1,5 +1,6 @@
+/* Style and spacing for my About page */
 .signup-spacing {
-    padding: 100px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;

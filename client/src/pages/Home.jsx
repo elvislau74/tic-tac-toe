@@ -5,6 +5,8 @@ export default function Home(props) {
     const [ state, dispatch ] = useLogin();
 
     const userData = state.user || {message: 'You are not logged in. Please login or signup to continue.'};
+
+    // Renders the home page with instructions to login or signup
     return (
         <>
             <LoginCheck />

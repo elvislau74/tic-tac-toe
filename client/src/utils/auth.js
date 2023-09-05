@@ -1,5 +1,7 @@
 import decode from 'jwt-decode';
 
+// authorizations to be used when logging in logging out and signing up
+// handles the tokens
 class AuthService {
   getProfile() {
     return decode(this.getToken());
@@ -25,12 +27,10 @@ class AuthService {
 
   login(idToken) {
     localStorage.setItem('id_token', idToken);
-    // window.location.assign('/');
   }
 
   logout() {
     localStorage.removeItem('id_token');
-    // window.location.reload();
   }
 }
 

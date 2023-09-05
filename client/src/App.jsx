@@ -46,6 +46,7 @@ function App() {
   // want to set the proper state from the beginning if we are initially logged in
   const loggedIn = token.length > 0;
 
+  // returns the created page components
   return (
     <ApolloProvider client={client}>
       <LoginProvider token={token} loggedIn = {loggedIn}>

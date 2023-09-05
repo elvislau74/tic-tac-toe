@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const secret = 'mysecretssshhhhhhh';
 const expiration = '144h';
 
+// authorizes user by creating token
 module.exports = {
   contextTokenizer: ({request: req, contextValue}) => {
     // // console.log(req.body);

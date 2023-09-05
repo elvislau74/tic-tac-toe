@@ -4,6 +4,7 @@ import { useLogin } from "../utils/LoginContext";
 import { LOGOUT } from "../utils/actions";
 import { useNavigate } from "react-router-dom";
 
+// Logs user out, deletes token, and redirects to home page
 export default function Logout() {
     const [ state, dispatch ] = useLogin();
     const navigate = useNavigate();

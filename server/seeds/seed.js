@@ -5,6 +5,7 @@ const cleanDB = require('./cleanDB');
 
 const userData = require('./userData.json');
 
+// create and seed the database
 db.once('open', async () => {
   await cleanDB('User', 'users');
 

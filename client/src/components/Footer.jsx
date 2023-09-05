@@ -1,3 +1,4 @@
+// footer with quote
 export default function Footer () {
     return (
     <div className="footer">

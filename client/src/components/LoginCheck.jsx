@@ -5,6 +5,7 @@ import { QUERY_ME } from "../utils/queries"
 import { LOGIN, LOGOUT } from "../utils/actions";
 import Auth from "../utils/auth";
 
+// checks if user is logged in
 export default function LoginCheck(props) {
     const [state, dispatch] = useLogin();
     const { loading, data: loginData } = useQuery(QUERY_ME, {
@@ -38,9 +39,6 @@ export default function LoginCheck(props) {
     }, [loading]);
 
     return (
-        // <div>
-        //     {props.children}
-        // </div>
         <></>
     )
 }
